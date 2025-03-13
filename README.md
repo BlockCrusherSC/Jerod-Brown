@@ -1,1 +1,1 @@
-'install-module -Name PolicyFileEditor -Force'
+`install-module -Name PolicyFileEditor -Force`
