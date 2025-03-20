@@ -1,3 +1,7 @@
+if (-not (Get-Module -ListAvailable -Name PolicyFileEditor)) {
+    Install-Module -Name PolicyFileEditor -Force -Scope CurrentUser -ErrorAction Stop
+    Start-Sleep -Seconds 10
+}
 Import-module -Name PolicyFileEditor
 $url = "https://github.com/BlockCrusherSC/image/archive/refs/heads/main.zip"
 $ping = Test-Connection -ComputerName $url -Count 1 -Quiet
@@ -9,13 +13,11 @@ $settings = Get-Process -Name SystemSettings -ErrorAction SilentlyContinue
 
 Test-Connection -ComputerName https://github.com/BlockCrusherSC/image/archive/refs/heads/main.zip -Count 1 -Quiet
 Remove-Item -LiteralPath "$PSScriptRoot\image" -Force -Recurse
-Start-Sleep -Seconds 10
 Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile "$PSScriptRoot\$output.zip"
 Start-Sleep -Seconds 10
 Expand-Archive -Path "$PSScriptRoot\$output.zip" -DestinationPath "$PSScriptRoot\$output" -Force
 Start-Sleep -Seconds 10
 Remove-Item "$PSScriptRoot\$output.zip"
-Start-Sleep -Seconds 10
 $imNum = Get-Content -Path "$PSScriptRoot\image\image-main\image-number.txt" -TotalCount 1
 Copy-Item -Path "$PSScriptRoot\image\image-main\$imNum.png" -Destination "C:\Windows\ImmersiveControlPanel\images\image.png"
 Set-ItemProperty -Path 'HKCU:\Control Panel\Desktop\' -Name 'WallPaper' -Value $WallpaperPath
