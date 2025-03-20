@@ -1,6 +1,6 @@
 if (-not (Get-Module -ListAvailable -Name PolicyFileEditor)) {
     Install-Module -Name PolicyFileEditor -Force -Scope CurrentUser -ErrorAction Stop
-    Start-Sleep -Seconds 10
+    Start-Sleep -Seconds 15
 }
 Import-module -Name PolicyFileEditor
 $url = "https://github.com/BlockCrusherSC/image/archive/refs/heads/main.zip"
